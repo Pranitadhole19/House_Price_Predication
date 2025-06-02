@@ -4,16 +4,11 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 
-# Use raw string or double backslashes to fix path issue
 model_path = r'C:\Users\Pranita\OneDrive\Desktop\House price predication\home_prices_model.pkl'
 
-# Load model
-#with open(model_path, 'rb') as file:
-#    model = pickle.load(file)
-# Load model
 with open(model_path, 'rb') as file:
     model_dict = pickle.load(file)
-    model = model_dict['model']  # ✅ Correct: extract the model object
+    model = model_dict['model']  
 
 app = Flask(__name__)
 
@@ -23,10 +18,10 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/predict', methods=['POST'])  # FIXED 'method' → 'methods'
+@app.route('/predict', methods=['POST']) 
 def predict():
     try:
-        # Assuming order: location, bhk, bath, total_sqft
+        
         total_sqft = float(request.form['total_sqft'])
         bath = float(request.form['bath'])
         bhk = float(request.form['bhk'])
@@ -34,7 +29,6 @@ def predict():
 
         location_encoded = le.fit_transform([location])[0]
 
-        # Example if model expects [location_encoded, total_sqft, bath, bhk]
         final_features = np.array([[location_encoded, total_sqft, bath, bhk]])
 
         prediction = model.predict(final_features)
