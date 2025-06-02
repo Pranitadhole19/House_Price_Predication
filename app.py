@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder
 le = LabelEncoder()
 
-model_path = r'C:\Users\Pranita\OneDrive\Desktop\House price predication\home_prices_model.pkl'
+model_path = r'C:\Users\Pranita\OneDrive\Desktop\House price predication\house_price_model.pkl'
 
 with open(model_path, 'rb') as file:
     model_dict = pickle.load(file)
