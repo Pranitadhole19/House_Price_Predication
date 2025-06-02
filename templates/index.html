@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>House Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .result {
+            font-size: 1.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>HOUSE PRICE PREDICTION</h2><br>
+        <form action="/predict" method="post">
+            <label for="total_sqft">Total Square Footage:</label>
+            <h3 style="color:black;font-size:12px;">Eg: 1200, 2000</h3>
+            <input type="number" id="total_sqft" step="0.01" name="total_sqft" placeholder="Enter Square Footage" required>
+
+
+            <label for="bath">Bathrooms:</label>
+            <h3 style="color:black;font-size:12px;">Eg: 2, 4</h3>
+            <input type="number" id="bath" name="bath" placeholder="Enter Bathrooms"  required>
+
+
+            <label for="bhk">BHK:</label>
+            <h3 style="color:black;font-size:12px;">Eg: 2, 4</h3>
+            <input type="number" id="bhk" name="bhk" placeholder="Enter BHK" required>
+
+
+            <label for="location_encoded">Location:</label>
+            <input type="text" id="location_encoded" name="location_encoded" placeholder="Enter Location" required>
+
+    <input type="submit" value="Predict">
+</form>
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
